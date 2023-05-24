@@ -21,7 +21,9 @@ app.get('/company/:orgnr', async (req, res) => {
     try {
         const [brregResponse, dataNorgeResponse] = await Promise.all([
             axios.get(`https://data.brreg.no/enhetsregisteret/oppslag/enheter/937889275`),
-            axios.get(`https://data.norge.no/organizations/937889275`)
+            axios.get(`https://data.norge.no/organizations/937889275`),
+            axios.get(`https://data.norge.no/organizations/974761076`),
+            axios.get(`https://w2.brreg.no/enhet/sok/detalj.jsp?orgnr=974761076`)
         ]);
 
         const companyData = {
