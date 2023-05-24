@@ -1,7 +1,7 @@
 document.getElementById('company-form').addEventListener('submit', async function(event) {
     event.preventDefault();
 
-    const orgnr = document.getElementById('orgnr').value;
+    const Organisasjonsnummer = document.getElementById('Organisasjonsnummer').value;
     const note = document.getElementById('note').value;
 
     try {
@@ -11,7 +11,7 @@ document.getElementById('company-form').addEventListener('submit', async functio
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ orgnr, note })
+            body: JSON.stringify({ Organisasjonsnummer, note })
         });
 
         // Check if the request was successful
@@ -19,7 +19,7 @@ document.getElementById('company-form').addEventListener('submit', async functio
             const data = await response.json();
 
             // Fetch and display the company info
-            const companyInfo = await fetch(`http://localhost:3000/company/${orgnr}`).then(res => res.json());
+            const companyInfo = await fetch(`http://localhost:3000/company/${Organisasjonsnummer}`).then(res => res.json());
             const companyInfoDiv = document.getElementById('company-info');
             companyInfoDiv.textContent = `Company name: ${companyInfo.name}, Note: ${note}`;
         } else {
