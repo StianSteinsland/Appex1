@@ -19,7 +19,8 @@ app.get('/company/:orgnr', async (req, res) => {
     // Her skal du kalle Brønnøysundregisterets API med axios, og sende dataene tilbake til klienten.
     // Dette er bare et eksempel, du må erstatte URL og parametere med de riktige for Brønnøysundregisterets API.
     try {
-        const response = await axios.get(`https://api.brreg.no/some-endpoint?orgnr=${orgnr}`);
+        const response = await axios.get(`https://data.brreg.no/enhetsregisteret/oppslag/enheter/937889275`);
+        const additionalData = await axios.get(`https://data.norge.no/organizations/937889275`);
         res.json(response.data);
     } catch (error) {
         res.status(500).json({ error: 'An error occurred while fetching data from Brønnøysundregisteret.' });
