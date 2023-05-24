@@ -20,8 +20,8 @@ app.get('/company/:orgnr', async (req, res) => {
     // Dette er bare et eksempel, du må erstatte URL og parametere med de riktige for Brønnøysundregisterets API.
     try {
         const [brregResponse, dataNorgeResponse] = await Promise.all([
-            axios.get(`https://data.brreg.no/enhetsregisteret/api/enheter/${orgnr}`),
-            axios.get(`https://data.norge.no/organizations/${orgnr}`)
+            axios.get(`https://data.brreg.no/enhetsregisteret/oppslag/enheter/937889275`),
+            axios.get(`https://data.norge.no/organizations/937889275`)
         ]);
 
         const companyData = {
