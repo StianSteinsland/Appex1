@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+main {
+    margin: 15px;
+}
+
+#company-form {
+    margin-bottom: 15px;
+}
+
+#company-form input, 
+#company-form textarea {
+    display: block;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+}
+
+#company-form button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+#company-info {
+    padding: 15px;
+    border: 1px solid #ccc;
+    background-color: white;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Denne CSS-filen gir noen grunnleggende stiler, inkludert:
+En standard font og bakgrunnsfarge for hele nettsiden.
+Stiler for header og footer, inkludert bakgrunnsfarge og tekstfarge.
+Marg og padding for hovedinnholdet og skjemaet.
+Spesifikke stiler for input- og textarea-elementene i skjemaet, inkludert display, marg, padding og bredde.
+Stiler for knappene i skjemaet, inkludert padding, marg og en peker cursor når musen er over dem.
+Stiler for bedriftsinformasjonsdiven, inkludert padding, border og bakgrunnsfarge.

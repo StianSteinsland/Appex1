@@ -2,22 +2,26 @@
 <html>
 <head>
     <title>Company App</title>
-    <style>
-        /* Her kan du legge til CSS-styling for å formatere siden. */
-    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <h1>Company App</h1>
-    <form id="company-form">
-        <input type="text" id="orgnr" placeholder="Enter org nr" required>
-        <textarea id="additional-info" placeholder="Enter additional info"></textarea>
-        <button type="submit">Submit</button>
-        <button id="save-info">Save Info</button>
-    </form>
-    
-    <div id="company-info">
-        <!-- Her vil informasjonen om bedriften vises. -->
-    </div>
+    <header>
+        <h1>Company App</h1>
+    </header>
+    <main>
+        <form id="company-form">
+            <input type="text" id="orgnr" placeholder="Enter org nr" required>
+            <textarea id="additional-info" placeholder="Enter additional info"></textarea>
+            <button type="submit">Submit</button>
+            <button id="save-info">Save Info</button>
+        </form>
+        <div id="company-info">
+            <!-- Her vil informasjonen om bedriften vises. -->
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2023 Your Company Name</p>
+    </footer>
     <script src="app.js"></script>
 </body>
 </html>
