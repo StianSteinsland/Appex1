@@ -19,18 +19,33 @@ app.get('/company/:orgnr', async (req, res) => {
     // Her skal du kalle Brønnøysundregisterets API med axios, og sende dataene tilbake til klienten.
     // Dette er bare et eksempel, du må erstatte URL og parametere med de riktige for Brønnøysundregisterets API.
     try {
-        const response = await axios.get(`https://data.brreg.no/enhetsregisteret/oppslag/enheter/937889275`);
-        const additionalData = await axios.get(`https://data.norge.no/organizations/937889275`);
-        res.json(response.data);
+        const [brregResponse, dataNorgeResponse] = await Promise.all([
+            axios.get(`https://data.brreg.no/enhetsregisteret/api/enheter/${orgnr}`),
+            axios.get(`https://data.norge.no/organizations/${orgnr}`)
+        ]);
+
+        const companyData = {
+            ...brregResponse.data,
+            additionalData: dataNorgeResponse.data
+        };
+
+        res.json(companyData);
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred while fetching data from Brønnøysundregisteret.' });
+        res.status(500).json({ error: 'An error occurred while fetching data.' });
     }
 });
 
 app.post('/company', (req, res) => {
     const companyData = req.body;
-    companies.push(companyData);
-    res.status(200).json({ message: 'Company added successfully.' });
+    const existingCompanyIndex = companies.findIndex(company => company.orgnr === companyData.orgnr);
+    
+    if (existingCompanyIndex >= 0) {
+        companies[existingCompanyIndex].additionalInfo = companyData.additionalInfo;
+    } else {
+        companies.push(companyData);
+    }
+    
+    res.status(200).json({ message: 'Company added/updated successfully.' });
 });
 
 app.listen(3000, () => {
