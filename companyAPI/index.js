@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-app.use(cors());
+app.use(cors({ origin: '*' }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
@@ -20,10 +20,10 @@ app.get('/company/:orgnr', async (req, res) => {
     // Dette er bare et eksempel, du må erstatte URL og parametere med de riktige for Brønnøysundregisterets API.
     try {
         const [brregResponse, dataNorgeResponse] = await Promise.all([
-            axios.get(`https://data.brreg.no/enhetsregisteret/oppslag/enheter/937889275`),
-            axios.get(`https://data.norge.no/organizations/937889275`),
-            axios.get(`https://data.norge.no/organizations/974761076`),
-            axios.get(`https://w2.brreg.no/enhet/sok/detalj.jsp?orgnr=974761076`)
+            axios.get(`https://data.brreg.no/enhetsregisteret/oppslag/enheter/${974761076}`),
+            axios.get(`https://data.norge.no/organizations/${937889275}`),
+            axios.get(`https://w2.brreg.no/enhet/sok/detalj.jsp?orgnr=${974761076}`)
+
         ]);
 
         const companyData = {
