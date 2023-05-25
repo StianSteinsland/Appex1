@@ -5,7 +5,7 @@ document.getElementById('company-form').addEventListener('submit', async functio
     const note = document.getElementById('note').value;
 
     try {
-        // Send a POST request to save the company info and the note
+        // Send en POST forespørsel for å lagre informasjonen og notatet om bedriften
         const response = await fetch('http://localhost:3000/company', {
             method: 'POST',
             headers: {
@@ -14,11 +14,11 @@ document.getElementById('company-form').addEventListener('submit', async functio
             body: JSON.stringify({ orgnr, note })
         });
 
-        // Check if the request was successful
+        // Sjekk om forespørselen var suksessfull
         if (response.ok) {
             const data = await response.json();
 
-            // Fetch and display the company info
+            // Hent og vis informasjon om bedriften
             const companyInfo = await fetch(`http://localhost:3000/company/${orgnr}`).then(res => res.json());
             const companyInfoDiv = document.getElementById('company-info');
             companyInfoDiv.textContent = `Company name: ${companyInfo.name}, Note: ${note}`;
