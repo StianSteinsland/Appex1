@@ -2,7 +2,8 @@ document.getElementById('company-form').addEventListener('submit', async functio
     event.preventDefault();
 
     const orgnr = document.getElementById('orgnr').value;
-    const note = document.getElementById('note').value;
+    const additionalInfo = document.getElementById('additional-info').value;
+    
 
     try {
         // Send en POST forespørsel for å lagre informasjonen og notatet om bedriften
