@@ -16,7 +16,7 @@ let companies = [];
 app.get('/company/:orgnr', async (req, res) => {
     const orgnr = req.params.orgnr;
 
-    // Her skal du kalle Brønnøysundregisterets API med axios, og sende dataene tilbake til klienten.
+    // Her kalles Brønnøysundregisterets API med axios, og sende dataene tilbake til klienten.
     try {
         const [brregResponse, dataNorgeResponse] = await Promise.all([
             axios.get(`https://data.brreg.no/enhetsregisteret/oppslag/enheter/974761076`),
@@ -31,7 +31,10 @@ app.get('/company/:orgnr', async (req, res) => {
 
         res.json(companyData);
     } catch (error) {
+        console.error(error);  // Logg feilen
         res.status(500).json({ error: 'An error occurred while fetching data.' });
+    
+    
     }
 });
 

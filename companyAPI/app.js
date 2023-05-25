@@ -4,7 +4,8 @@ document.getElementById('company-form').addEventListener('submit', async functio
     event.preventDefault();
 
     const orgnr = document.getElementById('orgnr').value;
-    document.getElementById('additional-info').value
+    const additionalInfo = document.getElementById('additional-info').value;
+
     
 
     try {
