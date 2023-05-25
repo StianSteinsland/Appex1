@@ -10,19 +10,18 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
 // For enkelhetens skyld lagrer vi bedriftsinformasjonen i minnet.
-// I en produksjonsapplikasjon ville du sannsynligvis bruke en database.
+// I en produksjonsapplikasjon ville jeg sannsynligvis brukt en database.
 let companies = [];
 
 app.get('/company/:orgnr', async (req, res) => {
     const orgnr = req.params.orgnr;
 
     // Her skal du kalle Brønnøysundregisterets API med axios, og sende dataene tilbake til klienten.
-    // Dette er bare et eksempel, du må erstatte URL og parametere med de riktige for Brønnøysundregisterets API.
     try {
         const [brregResponse, dataNorgeResponse] = await Promise.all([
             axios.get(`https://data.brreg.no/enhetsregisteret/oppslag/enheter/${974761076}`),
-            axios.get(`https://data.norge.no/organizations/${937889275}`),
-            axios.get(`https://w2.brreg.no/enhet/sok/detalj.jsp?orgnr=${974761076}`)
+            axios.get(`https://data.norge.no/organizations/${974761076}`),
+ 
 
         ]);
 
