@@ -20,7 +20,7 @@ app.get('/company/:orgnr', async (req, res) => {
     try {
         const [brregResponse, dataNorgeResponse] = await Promise.all([
             axios.get(`https://data.brreg.no/enhetsregisteret/oppslag/enheter/${orgnr}`),
-            axios.get(`https://data.norge.no/organizations/${orgnr}`),        
+            axios.get(`https://data.norge.no/organizations/${974761076}`)       
         ]);
         
         const companyData = {
