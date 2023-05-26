@@ -39,7 +39,7 @@ document.getElementById('save-info').addEventListener('click', function(event) {
         console.log(companyInfo);
 
         const companyInfoDiv = document.getElementById('company-info');
-        companyInfoDiv.textContent = `Company name: ${companyInfo.Virksomhetsnavn}, additionalInfo: ${companyInfo.Organisasjonsform}`;
+        companyInfoDiv.textContent = `Company name: ${companyInfo.Virksomhetsnavn}, additionalInfo: ${companyInfo.Organisasjonsform}, additionalInfo: ${CompanyInfo.Postadresse}`;
 
 
         } else {
