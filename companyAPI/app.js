@@ -1,6 +1,4 @@
-const fetch = require('whatwg-fetch');
-
-document.getElementById('save-info').addEventListener('click', async function(event) { // Vi gjør funksjonen async for å bruke await
+document.getElementById('save-info').addEventListener('click', async function(event) {
     event.preventDefault();
 
     const orgnr = document.getElementById('orgnr').value;
@@ -37,7 +35,8 @@ document.getElementById('save-info').addEventListener('click', async function(ev
             console.log(companyInfo);
 
             const companyInfoDiv = document.getElementById('company-info');
-            companyInfoDiv.textContent = `Company name: ${companyInfo.Virksomhetsnavn}, additionalInfo: ${companyInfo.Organisasjonsform}, additionalInfo: ${CompanyInfo.Postadresse}`;
+            companyInfoDiv.textContent = `Company name: ${companyInfo.Virksomhetsnavn}, additionalInfo: ${companyInfo.Organisasjonsform}, additionalInfo: ${companyInfo.Postadresse}`;
+
         } else {
             console.log('Error saving company info: ', await response.text());
         }
@@ -45,5 +44,4 @@ document.getElementById('save-info').addEventListener('click', async function(ev
         console.log('Fetch error: ', err);
     }
 });
-
 
