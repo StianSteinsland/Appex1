@@ -1,52 +1,61 @@
-document.getElementById('submit').addEventListener('click', async function(event) {
-    event.preventDefault();
+document.addEventListener('DOMContentLoaded', (event) => {
 
-    const orgnr = document.getElementById('orgnr').value;
-    if (!orgnr) {
-        console.error("Orgnr must be provided.");
-        return;
-    }
+    document.getElementById('submit').addEventListener('click', async function(event) {
+        event.preventDefault();
+        
+        const orgnr = document.getElementById('orgnr').value;
 
-    try {
-        const response = await fetch(`http://localhost:3000/company/${orgnr}`);
-        if (response.ok) {
-            const data = await response.json();
+        // Sjekk om orgnr er definert
+        if (!orgnr) {
+            console.error("Orgnr must be provided.");
+            return;
+        }
+
+        try {
+            // Hent og vis informasjon om bedriften
+            const companyInfo = await fetch(`http://localhost:3000/company/${orgnr}`).then(res => res.json());
+
+            // Logg bedriftsinformasjonen til konsollen
+            console.log(companyInfo);
+
             const companyInfoDiv = document.getElementById('company-info');
-            companyInfoDiv.textContent = `Company name: ${data.navn}, Organisasjonsform: ${data.organisasjonsform}, Postadresse: ${data.postadresse}`;
-        } else {
-            console.log('Error fetching company info: ', await response.text());
+            companyInfoDiv.textContent = `Company name: ${companyInfo.name}, Orgnr: ${companyInfo.orgnr}, Organisasjonsform: ${companyInfo.organisasjonsform}, Adresse: ${companyInfo.Forretningsadresse}`;
+        } catch(err) {
+            console.log('Fetch error: ', err);
         }
-    } catch(err) {
-        console.log('Fetch error: ', err);
-    }
-});
+    });
 
-document.getElementById('save-info').addEventListener('click', async function(event) {
-    event.preventDefault();
+    document.getElementById('save-info').addEventListener('click', async function(event) {
+        event.preventDefault();
 
-    const orgnr = document.getElementById('orgnr').value;
-    const additionalInfo = document.getElementById('additional-info').value;
+        const orgnr = document.getElementById('orgnr').value;
+        const additionalInfo = document.getElementById('additional-info').value;
 
-    if (!orgnr || !additionalInfo) {
-        console.error("Orgnr and additional info must be provided.");
-        return;
-    }
-
-    try {
-        const response = await fetch('http://localhost:3000/company', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ orgnr, additionalInfo })
-        });
-
-        if (response.ok) {
-            console.log('Company info saved successfully.');
-        } else {
-            console.log('Error saving company info: ', await response.text());
+        // Sjekk om orgnr og additionalInfo er definert
+        if (!orgnr || !additionalInfo) {
+            console.error("Orgnr and additional info must be provided.");
+            return;
         }
-    } catch(err) {
-        console.log('Fetch error: ', err);
-    }
+
+        try {
+            // Send en POST forespørsel for å lagre informasjonen og notatet om bedriften
+            const response = await fetch('http://localhost:3000/company', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ orgnr, additionalInfo })
+            });
+
+            // Sjekk om forespørselen var suksessfull
+            if (response.ok) {
+                console.log('Company info saved successfully');
+            } else {
+                console.log('Error saving company info: ', await response.text());
+            }
+        } catch(err) {
+            console.log('Fetch error: ', err);
+        }
+    });
+
 });
