@@ -19,10 +19,13 @@ app.get('/company/:orgnr', async (req, res) => {
     // Her kalles Brønnøysundregisterets API med axios, og sende dataene tilbake til klienten.
     try {
         const [brregResponse, dataNorgeResponse] = await Promise.all([
-            axios.get(`https://data.brreg.no/enhetsregisteret/oppslag/enheter/${orgnr}`),
-            axios.get(`https://data.norge.no/organizations/${974761076}`)       
+            axios.get(`https://data.brreg.no/enhetsregisteret/oppslag/enheter/${974761076}`),
+            axios.get(`https://data.norge.no/organizations/${974761076}`).then(response => 
+            {console.log(response.data); // Dette vil logge dataene som serveren returnerte
+        })
+
         ]);
-        
+
         const companyData = {
             ...brregResponse.data,
             additionalData: dataNorgeResponse.data
