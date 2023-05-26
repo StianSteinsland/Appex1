@@ -1,4 +1,4 @@
-import 'whatwg-fetch';
+const fetch = require('whatwg-fetch');
 
 document.getElementById('save-info').addEventListener('click', function(event) {
     event.preventDefault();
