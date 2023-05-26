@@ -1,9 +1,4 @@
-const fetch = window.fetch;
-
-document.getElementById('save-info').addEventListener('click', handleClick);
-document.getElementById('submit-button').addEventListener('click', handleClick);
-
-async function handleClick(event) {
+document.getElementById('save-info').addEventListener('click', async function(event) {
     event.preventDefault();
 
     const orgnr = document.getElementById('orgnr').value;
@@ -40,7 +35,7 @@ async function handleClick(event) {
             console.log(companyInfo);
 
             const companyInfoDiv = document.getElementById('company-info');
-            companyInfoDiv.textContent = `Company name: ${companyInfo.Virksomhetsnavn}, additionalInfo: ${companyInfo.Organisasjonsform}, additionalInfo: ${CompanyInfo.Postadresse}`;
+            companyInfoDiv.textContent = `Company name: ${companyInfo.name}, additionalInfo: ${companyInfo.Organisasjonsform}, additionalInfo: ${companyInfo.Postadresse}`;
 
         } else {
             console.log('Error saving company info: ', await response.text());
@@ -48,5 +43,4 @@ async function handleClick(event) {
     } catch(err) {
         console.log('Fetch error: ', err);
     }
-}
-
+});
