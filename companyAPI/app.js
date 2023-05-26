@@ -6,7 +6,11 @@ document.getElementById('company-form').addEventListener('submit', async functio
     const orgnr = document.getElementById('orgnr').value;
     const additionalInfo = document.getElementById('additional-info').value;
 
-    
+    // Sjekk om orgnr og additionalInfo er definert
+    if (!orgnr || !additionalInfo) {
+        console.error("Orgnr and additional info must be provided.");
+        return;
+    }
 
     try {
         // Send en POST forespørsel for å lagre informasjonen og notatet om bedriften
@@ -24,6 +28,10 @@ document.getElementById('company-form').addEventListener('submit', async functio
 
             // Hent og vis informasjon om bedriften
             const companyInfo = await fetch(`http://localhost:3000/company/${orgnr}`).then(res => res.json());
+
+            // Logg bedriftsinformasjonen til konsollen
+            console.log(companyInfo);
+
             const companyInfoDiv = document.getElementById('company-info');
             companyInfoDiv.textContent = `Company name: ${companyInfo.name}, additionalInfo: ${companyInfo.additionalInfo}`;
         } else {
@@ -33,3 +41,4 @@ document.getElementById('company-form').addEventListener('submit', async functio
         console.log('Fetch error: ', err);
     }
 });
+
