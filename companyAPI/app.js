@@ -13,10 +13,14 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
         try {
             // Hent og vis informasjon om bedriften
-            const companyInfo = await fetch(`http://localhost:3000/company/${orgnr}`).then(res => res.json());
+        // Hent og vis informasjon om bedriften
+        const response = await fetch(`http://localhost:3000/company/${orgnr}`);
+        const companyInfo = await response.json();
 
-            // Logg bedriftsinformasjonen til konsollen
-            console.log(companyInfo);
+        // Logg hele responsen til konsollen
+        console.log('Response:', response);
+        console.log('Company info:', companyInfo);
+
 
             const companyInfoDiv = document.getElementById('company-info');
             companyInfoDiv.textContent = `Company name: ${companyInfo.name}, Orgnr: ${companyInfo.orgnr}, Organisasjonsform: ${companyInfo.organisasjonsform}, Adresse: ${companyInfo.Forretningsadresse}`;
@@ -46,7 +50,10 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 },
                 body: JSON.stringify({ orgnr, additionalInfo })
             });
-
+            const data = await response.json();
+            console.log('Additional info saved:', data);
+            alert('Info saved!');
+        
             // Sjekk om forespørselen var suksessfull
             if (response.ok) {
                 console.log('Company info saved successfully');

@@ -19,7 +19,15 @@ app.get('/company/:orgnr', async (req, res) => {
             axios.get(`https://data.brreg.no/enhetsregisteret/oppslag/enheter/${orgnr}`),
             axios.get(`https://data.norge.no/organizations/${orgnr}`)
         ]);
-
+        
+        const data = await response.json();
+        companies.push({
+            name: data.name,
+            orgnr: data.orgnr,
+            organisasjonsform: data.organisasjonsform,
+            address: data.Forretningsadresse.adresse
+        });
+        
         const companyData = {
             ...brregResponse.data,
             additionalData: dataNorgeResponse.data
