@@ -9,7 +9,7 @@ app.use(cors({ origin: '*' }));
 app.use(bodyParser.json());
 app.use(express.static(__dirname));
 
-// For enkelhetens skyld lagrer vi bedriftsinformasjonen i minnet.
+// For enkelhetens skyld lagrer jeg bedriftsinformasjonen i minnet.
 // I en produksjonsapplikasjon ville jeg sannsynligvis brukt en database.
 let companies = [];
 
