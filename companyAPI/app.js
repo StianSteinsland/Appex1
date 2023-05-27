@@ -14,7 +14,9 @@ document.addEventListener('DOMContentLoaded', (event) => {
         try {
         // Hent og vis informasjon om bedriften
         const response = await fetch(`http://localhost:3000/company/${orgnr}`);
+        console.log('HTTP Response:', response);
         const companyInfo = await response.json();
+        
 
         // Logg hele responsen til konsollen
         console.log('API Response:', companyInfo);

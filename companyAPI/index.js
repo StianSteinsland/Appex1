@@ -17,11 +17,12 @@ app.get('/company/:orgnr', async (req, res) => {
     try {
         const [brregResponse, dataNorgeResponse] = await Promise.all([
             axios.get(`https://data.brreg.no/enhetsregisteret/api/enheter/${orgnr}`),
+            axios.get(`https://data.norge.no/organizations/${orgnr}`), 
         ]);
 
         const companyData = {
             ...brregResponse.data,
-            additionalData: dataNorgeResponse.data
+            additionalData: dataNorgeResponse.data 
         };
 
         const existingCompanyIndex = companies.findIndex(company => company.orgnr === companyData.orgnr);
