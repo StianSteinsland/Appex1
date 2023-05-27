@@ -20,18 +20,17 @@ app.get('/company/:orgnr', async (req, res) => {
             axios.get(`https://data.norge.no/organizations/${orgnr}`)
         ]);
         
-        const data = await response.json();
-        companies.push({
-            name: data.name,
-            orgnr: data.orgnr,
-            organisasjonsform: data.organisasjonsform,
-            address: data.Forretningsadresse.adresse
-        });
-        
         const companyData = {
             ...brregResponse.data,
             additionalData: dataNorgeResponse.data
         };
+
+        const existingCompanyIndex = companies.findIndex(company => company.orgnr === companyData.orgnr);
+        if (existingCompanyIndex >= 0) {
+            companies[existingCompanyIndex] = companyData;
+        } else {
+            companies.push(companyData);
+        }
 
         res.json(companyData);
     } catch (error) {
@@ -45,12 +44,10 @@ app.post('/company', (req, res) => {
     const existingCompanyIndex = companies.findIndex(company => company.orgnr === companyData.orgnr);
 
     if (existingCompanyIndex >= 0) {
-        companies[existingCompanyIndex].additionalInfo = companyData.additionalInfo;
+        companies[existingCompanyIndex] = {...companies[existingCompanyIndex], ...companyData};
     } else {
         companies.push(companyData);
     }
-
-    companies = companies.map(company => company.orgnr === companyData.orgnr ? companyData : company);
 
     res.status(200).json({ message: 'Company added/updated successfully.' });
 });
