@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
             const companyInfoDiv = document.getElementById('company-info');
-            companyInfoDiv.textContent = `Company name: ${companyInfo.name}, Orgnr: ${companyInfo.orgnr}, Organisasjonsform: ${companyInfo.organisasjonsform}, Adresse: ${companyInfo.Forretningsadresse}`;
+            companyInfoDiv.textContent = `Company name: ${companyInfo.name}, Orgnr: ${companyInfo.orgnr}, Organisasjonsform: ${companyInfo.organisasjonsform}, Beskrivelse: ${companyInfo.Beskrivelse} , Adresse: ${companyInfo.Forretningsadresse}`;
         } catch(err) {
             console.log('Fetch error: ', err);
         }
