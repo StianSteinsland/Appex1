@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('submit').addEventListener('click', async function(event) {
         event.preventDefault();
         
-        const orgnr = document.getElementById('orgnr').value;
+        let orgnr = document.getElementById('orgnr').value;
 
         // Sjekk om orgnr er definert
         if (!orgnr) {
@@ -12,18 +12,19 @@ document.addEventListener('DOMContentLoaded', (event) => {
         }
 
         try {
-            // Hent og vis informasjon om bedriften
         // Hent og vis informasjon om bedriften
         const response = await fetch(`http://localhost:3000/company/${orgnr}`);
         const companyInfo = await response.json();
 
         // Logg hele responsen til konsollen
-        console.log('Response:', response);
-        console.log('Company info:', companyInfo);
+        console.log('API Response:', companyInfo);
 
+        let navn = companyInfo.navn || '';
+        let organisasjonsform = companyInfo.organisasjonsform ? companyInfo.organisasjonsform.beskrivelse : '';
+        let adresse = companyInfo.forretningsadresse ? companyInfo.forretningsadresse.adresse.join(', ') : '';
 
             const companyInfoDiv = document.getElementById('company-info');
-            companyInfoDiv.textContent = `Company name: ${companyInfo.name}, Orgnr: ${companyInfo.orgnr}, Organisasjonsform: ${companyInfo.organisasjonsform}, Beskrivelse: ${companyInfo.Beskrivelse} , Adresse: ${companyInfo.Forretningsadresse}`;
+            companyInfoDiv.textContent = `Company name: ${navn}, Orgnr: ${orgnr}, Organisasjonsform: ${organisasjonsform}, Adresse: ${adresse}`;
         } catch(err) {
             console.log('Fetch error: ', err);
         }
@@ -64,5 +65,5 @@ document.addEventListener('DOMContentLoaded', (event) => {
             console.log('Fetch error: ', err);
         }
     });
-
 });
+

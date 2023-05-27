@@ -16,10 +16,9 @@ app.get('/company/:orgnr', async (req, res) => {
 
     try {
         const [brregResponse, dataNorgeResponse] = await Promise.all([
-            axios.get(`https://data.brreg.no/enhetsregisteret/oppslag/enheter/${orgnr}`),
-            axios.get(`https://data.norge.no/organizations/${orgnr}`)
+            axios.get(`https://data.brreg.no/enhetsregisteret/api/enheter/${orgnr}`),
         ]);
-        
+
         const companyData = {
             ...brregResponse.data,
             additionalData: dataNorgeResponse.data
@@ -44,7 +43,7 @@ app.post('/company', (req, res) => {
     const existingCompanyIndex = companies.findIndex(company => company.orgnr === companyData.orgnr);
 
     if (existingCompanyIndex >= 0) {
-        companies[existingCompanyIndex] = {...companies[existingCompanyIndex], ...companyData};
+        companies[existingCompanyIndex] = {...companies[existingCompanyIndex], additionalData: {...companies[existingCompanyIndex].additionalData, note: companyData.additionalData.note }};
     } else {
         companies.push(companyData);
     }
