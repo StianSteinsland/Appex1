@@ -3,44 +3,44 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
-}
-
-header {
+  }
+  
+  header {
     background-color: #333;
     color: white;
     padding: 10px;
     text-align: center;
-}
-
-main {
+  }
+  
+  main {
     margin: 15px;
-}
-
-#company-form {
+  }
+  
+  #company-form {
     margin-bottom: 15px;
-}
-
-#company-form input, 
-#company-form textarea {
+  }
+  
+  #company-form input,
+  #company-form textarea {
     display: block;
     margin-bottom: 10px;
     padding: 10px;
     width: 100%;
-}
-
-#company-form button {
+  }
+  
+  #company-form button {
     padding: 10px 20px;
     margin-top: 10px;
     cursor: pointer;
-}
-
-#company-info {
+  }
+  
+  #company-info {
     padding: 30px;
     border: 1px solid #ccc;
     background-color: white;
-}
-
-footer {
+  }
+  
+  footer {
     background-color: #333;
     color: white;
     text-align: center;
@@ -48,7 +48,8 @@ footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-}
+  }
+  
 
 /* Denne CSS-filen har noen grunnleggende stiler, inkludert:
 En standard font og bakgrunnsfarge for hele nettsiden.
